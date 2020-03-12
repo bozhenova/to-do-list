@@ -15,10 +15,11 @@ export default class Modal extends React.Component {
           Open Modal
           </button>
         {this.state.isOpen && (
-          <div className="modal">
+          <div className="modal" onClick={
+            (e) => !e.target.classList.contains('modal-body') && !e.target.classList.contains('modal-title') && !e.target.classList.contains('modal-text') ? this.setState({ isOpen: false }) : null}>
             <div className="modal-body">
-              <h1>Modal Title</h1>
-              <p>I am awesome modal!</p>
+              <h1 className="modal-title">Modal Title</h1>
+              <p className="modal-text">I am awesome modal!</p>
               <button onClick={
                 () => this.setState({ isOpen: false })}>
                 Close modal

@@ -40,7 +40,7 @@ function App() {
     setTodos(todos.concat([
       {
         title: title,
-        id: Date.now,
+        id: Date.now(),
         completed: false
       }
     ]))
@@ -49,9 +49,10 @@ function App() {
   return (
     <Context.Provider value={{ removeTodo }}>
       <div className="wrapper">
-        <h1>React tutorial</h1>
+        <h1>To-do-list</h1>
         <React.Suspense fallback={<p>Loading...</p>}>
           <Modal />
+          {loading ? null : <div style={{ textAlign: 'center' }}>{todos.filter(todo => !todo.completed).length} left to do</div>}
           <AddTodo onCreate={addTodo} />
         </React.Suspense>
         {loading && <Loader />}
